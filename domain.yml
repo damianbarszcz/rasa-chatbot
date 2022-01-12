@@ -8,14 +8,37 @@ intents:
   - mood_great
   - mood_unhappy
   - bot_challenge
+  - ask_open_hours
+  - ask_restaurant_menu
+  - start_order
+  - your_order
+  - address
+
+entities:
+  - days_of_the_week
+  - hour
+  - meal
+
+actions:
+  - utter_greet
+  - utter_goodbye
+  - utter_ask_delivery
+  - utter_ask_address
+  
+  - action_open_hours
+  - action_restaurant_menu
+  - action_receive_order
+  - action_show_order
+  - action_order_delivery
+
+slots:
+  meal:
+    type: text
 
 responses:
-  utter_greet:
-  - text: "Hey! How are you?"
-
   utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
+    - text: "Here is something to cheer you up:"
+      image: "https://i.imgur.com/nGF1K8f.jpg"
 
   utter_did_that_help:
   - text: "Did that help you?"
@@ -23,11 +46,33 @@ responses:
   utter_happy:
   - text: "Great, carry on!"
 
-  utter_goodbye:
-  - text: "Bye"
-
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
+  
+  utter_greet:
+    - text: "Hello, what you need ?"
+    - text: "Welcome! How may i help you ?"
+    - text: "Hello! How can I help you ?"
+
+  utter_goodbye:
+    - text: "Goodbye"
+    - text: "Thank you for choosing us. Waiting for your next visit"
+    - text: "Goodbye and come back again"
+
+  utter_ask_order:
+  - text: "What would you like to eat?"
+  - text: "What would you need?"
+  - text: "What do you want to eat?"
+
+  utter_ask_delivery:
+    - text: "Do you want delivery to your house?"
+    - text: "Should we deliver it to your home?"
+    - text: "Whether the order should be delivered to you to a specific address?"
+
+  utter_ask_address:
+    - text: "What is your address"
+    - text: "Please indicate the place of delivery of the order"
+    - text: "Where are we to deliver the order?"
 
 session_config:
   session_expiration_time: 60

@@ -24,7 +24,7 @@ nlu:
     - good by
     - cee you later
     - good night
-    - bye
+    - byes
     - goodbye
     - have a nice day
     - see you around
@@ -90,3 +90,46 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+
+- lookup: days_of_the_week
+  examples: |
+    - monday
+    - tuesday
+    - wedensday
+    - thursday
+    - friday
+    - saturday
+    - sunday
+
+- intent: ask_open_hours
+  examples: |
+    - is the restaurant open at [monday](days_of_the_week) [2](hour)
+    - are you working at [tuesday](days_of_the_week) [23](hour)
+    - whether the restaurant is open on [wedensday](days_of_the_week) [18](hour)
+
+- intent: ask_restaurant_menu
+  examples: |
+    - what is your menu
+    - what is available on your menu
+    - what are you serving
+
+- intent: start_order
+  examples: |
+    - I would like to order
+    - I want to eat something
+    - I need to order something
+
+- intent: your_order
+  examples: |
+    - Pizza
+    - Lasagne
+    - Hot-dog
+    - Burger
+    - Spaghetti Carbonara
+    - Tiramisu
+
+- intent: address
+  examples: |
+    - ul.Henryka Kulakowskiego 5/9, Krakow
+    - ul.Szczebrzeska 40, Zamosc
+    - ul.Mila 1/2, Warszawa

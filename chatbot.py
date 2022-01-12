@@ -1,15 +1,37 @@
 import discord
-from discord.ext import commands
+import requests 
 import json
+import os
+from dotenv import load_dotenv
 
-client = commands.Bot(command_prefix=">")
+load_dotenv()
+token = os.getenv('DISCORD_TOKEN')
+client = discord.Client()
+
+def curl_request(message, user):
+
+	headers = { 'Content-Type': 'application/json' }
+
+	data = '{"sender": "'+ user +'","message": "'+ message +'","metadata": {}}'
+	response = requests.post('http://localhost:5005/webhooks/rest/webhook', headers=headers, data=data)
+	messages = json.loads(response.content)
+	answer = list(map(lambda msg: msg['image'] if 'image' in msg else msg['text'], messages))
+
+	return answer
 
 @client.event
 async def on_ready():
-    print("Bot is ready")
+	print(f'{client.user.name} has connected to Discord!')
 
-@client.command()
-async def hello(ctx):
-    await ctx.send("Hi")
+@client.event
+async def on_message(message):
+	if message.author != client.user:
 
-client.run("OTE5MTczMDY2MDU0MDYyMTIw.YbR8oA.6htt0TYAmeil2jYsg1ha2Pt7tlM")
+		answers = curl_request(message.content, str(message.author))
+
+		end_response = " \n ".join((answers))
+
+		return await message.channel.send(f'{message.author.mention} ' + end_response)
+
+# Enter your token
+client.run(token)

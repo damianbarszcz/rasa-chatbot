@@ -28,3 +28,40 @@ stories:
   - action: utter_did_that_help
   - intent: deny
   - action: utter_goodbye
+
+- story: ask open hours path
+  steps:
+  - intent: ask_open_hours
+  - action: action_open_hours
+
+- story: ask restaurant menu path
+  steps:
+   - intent: ask_restaurant_menu
+   - action: action_restaurant_menu
+
+- story: stationary order path
+  steps:
+  - intent: start_order
+  - action: action_restaurant_menu
+  - action: utter_ask_order
+  - intent: your_order
+  - action: action_receive_order
+  - action: utter_ask_delivery
+  - intent: deny
+  - action: utter_goodbye
+
+- story: delivery order path
+  steps:
+  - intent: start_order
+  - action: action_restaurant_menu
+  - action: utter_ask_order
+  - intent: your_order
+  - action: action_receive_order
+  - action: utter_ask_delivery
+  - intent: affirm
+  - action: utter_ask_address
+  - intent: address
+  - action: action_order_delivery
+  - action: utter_goodbye
+
+
